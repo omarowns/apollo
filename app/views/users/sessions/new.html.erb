@@ -1,0 +1,11 @@
+<h2>Welcome!</h2>
+
+<div class="actions">
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= form_with(url: omniauth_authorize_path(resource_name, provider, params: { show_dialog: 'true' }), method: 'post') do |f| %>
+        <%= f.submit "Sign in with #{OmniAuth::Utils.camelize(provider)}" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
