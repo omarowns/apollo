@@ -1,11 +1,22 @@
-<h2>Welcome!</h2>
+<h2 class="max-w-lg mx-auto text-3xl mt-6 text-white text-center">
+  Welcome to Apollo!
+</h2>
 
-<div class="actions">
-  <%- if devise_mapping.omniauthable? %>
-    <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= form_with(url: omniauth_authorize_path(resource_name, provider, params: { show_dialog: 'true' }), method: 'post') do |f| %>
-        <%= f.submit "Sign in with #{OmniAuth::Utils.camelize(provider)}" %>
+<section class="max-w-lg mx-auto">
+  <p class="text-white text-center">Share what you are listening on Spotify!</p>
+
+  <section class="w-60 mx-auto mt-6">
+    <%- if devise_mapping.omniauthable? %>
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <%= form_with(
+              url: omniauth_authorize_path(resource_name, provider,
+              params: { show_dialog: 'true' }),
+              method: 'post',
+              class: 'p-4 bg-white rounded-md flex items-center justify-center'
+            ) do |f| %>
+          <%= f.submit "Sign in with #{OmniAuth::Utils.camelize(provider)}", class: 'button-primary' %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+  </section>
+</section>

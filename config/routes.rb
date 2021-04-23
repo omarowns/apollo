@@ -8,4 +8,8 @@ Rails.application.routes.draw do
       registrations: 'users/registrations',
       omniauth_callbacks: 'users/omniauth_callbacks'
     }
+
+  direct :spotify_oauth_settings do
+    'https://www.spotify.com/account/apps/'
+  end
 end
