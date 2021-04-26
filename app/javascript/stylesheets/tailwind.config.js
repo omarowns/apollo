@@ -10,7 +10,8 @@ module.exports = {
         'cb-orange': '#ff6050'
       },
       backgroundImage: theme => ({
-        'backdrop': "linear-gradient(to top right, black, #ff6050 125%)"
+        'backdrop': "linear-gradient(to top right, black, #ff6050 125%)",
+        'profile-image': "var(--profile-image-url)"
       })
     },
   },

@@ -1,19 +1,19 @@
-<nav class="h-24 w-screen bg-black bg-opacity-60 flex items-center text-white">
-  <div class="w-4/5 mx-auto flex justify-between ">
-    <h1 class="text-3xl ml-6">🎹 Apollo</h1>
-    <div class="sessions mr-6">
+<nav class="h-24 w-screen bg-black bg-opacity-60 flex text-white">
+  <div class="w-4/5 mx-auto flex justify-between items-center">
+    <h1 class="text-3xl">
+      <%= link_to '🎹 Apollo', root_path %>
+    </h1>
+    <div class="sessions">
       <% if user_signed_in? %>
-        <article>
-          <header>
-            <%= current_user&.name %>
-          </header>
-          <%= image_tag current_user.image if current_user.image.present? %>
-          <footer>
+        <article class="flex items-center">
+          <div class="w-20 h-20 rounded-full bg-profile-image bg-cover" style="--profile-image-url: url(<%= current_user.image %>)"></div>
+          <div class="ml-3">
+            <h2 class="text-xl"><%= current_user&.name %></h2>
             <%= link_to 'Settings', edit_user_registration_path %>
             <%= form_with(url: destroy_user_session_path, method: 'delete') do |f| %>
               <%= f.submit 'Sign out' %>
             <% end %>
-          </footer>
+          </div>
         </article>
       <% end %>
     </div>

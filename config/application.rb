@@ -18,5 +18,9 @@ module ApolloCratebind
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    RSpotify::authenticate(
+      Rails.application.credentials.dig(:spotify, :client_id),
+      Rails.application.credentials.dig(:spotify, :client_secret)
+    )
   end
 end
