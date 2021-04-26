@@ -1,2 +1,7 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<section class="mt-12">
+  <div class="grid grid-cols-3 gap-4">
+    <% @users.each do |user| %>
+      <%= render "shared/player", user: user %>
+    <% end %>
+  </div>
+</section>

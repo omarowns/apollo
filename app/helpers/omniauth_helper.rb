@@ -17,6 +17,7 @@ module OmniauthHelper
       user.image = auth.info.image
       user.url = auth.info.urls.symbolize_keys[:spotify]
       user.save
+      user.create_player
 
       user
     end

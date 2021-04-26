@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_23_182702) do
+ActiveRecord::Schema.define(version: 2021_04_26_152849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "players", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "spotify_track_id"
+    t.boolean "playing", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spotify_track_id"], name: "index_players_on_spotify_track_id"
+    t.index ["user_id"], name: "index_players_on_user_id"
+  end
+
+  create_table "spotify_tracks", force: :cascade do |t|
+    t.string "uri"
+    t.string "artist"
+    t.string "artist_url"
+    t.string "album"
+    t.string "album_url"
+    t.string "song"
+    t.string "song_url"
+    t.string "album_cover_url"
+    t.string "preview_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["uri"], name: "index_spotify_tracks_on_uri", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,4 +60,6 @@ ActiveRecord::Schema.define(version: 2021_04_23_182702) do
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
+  add_foreign_key "players", "spotify_tracks"
+  add_foreign_key "players", "users"
 end
