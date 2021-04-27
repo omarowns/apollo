@@ -1,0 +1,20 @@
+<% if player.playing %>
+  <article id="<%= dom_id(player) %>" class="spotify-player" style="--spotify-track-image-url: url(<%= player.spotify_track.album_cover_url %>)">
+    <header>
+      <h3><%= player.user.name %></h3>
+    </header>
+    <footer>
+      <h4><%= link_to player.spotify_track.song, player.spotify_track.song_url %></h4>
+      <h5><%= link_to player.spotify_track.artist, player.spotify_track.artist_url %></h5>
+    </footer>
+  </article>
+<% else %>
+  <article id="<%= dom_id(player) %>" class="spotify-player bg-gray-600" style="--spotify-track-image-url: url()">
+    <header>
+      <h3><%= player.user.name %></h3>
+    </header>
+    <footer>
+      <h4>Nothing right now</h4>
+    </footer>
+  </article>
+<% end %>

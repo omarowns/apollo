@@ -1,7 +1,10 @@
 <section class="mt-12">
   <div class="grid grid-cols-3 gap-4">
     <% @users.each do |user| %>
-      <%= render "shared/player", user: user %>
+      <div>
+        <%= turbo_stream_from user.player, :currently_playing %>
+        <%= render "players/player", player: user.player %>
+      </div>
     <% end %>
   </div>
 </section>
