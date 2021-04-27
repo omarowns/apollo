@@ -1,0 +1,10 @@
+---
+:verbose: true
+:concurrency: 2
+:logfile: ./log/sidekiq.log
+:queues:
+  - [default, 2]
+  - mailers
+
+production:
+  :concurrency: 5

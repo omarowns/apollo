@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'home#index'
 
@@ -12,4 +14,6 @@ Rails.application.routes.draw do
   direct :spotify_oauth_settings do
     'https://www.spotify.com/account/apps/'
   end
+
+  mount Sidekiq::Web => '/sidekiq'
 end

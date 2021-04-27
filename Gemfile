@@ -34,6 +34,7 @@ gem 'omniauth-rails_csrf_protection'
 gem 'tailwindcss-rails'
 gem 'rspotify', github: 'guilhermesad/rspotify'
 gem 'activejob-uniqueness'
+gem 'sidekiq'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
