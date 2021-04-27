@@ -12,7 +12,8 @@
               url: omniauth_authorize_path(resource_name, provider,
               params: { show_dialog: 'true' }),
               method: 'post',
-              class: 'p-4 bg-white rounded-md flex items-center justify-center'
+              class: 'p-4 bg-white rounded-md flex items-center justify-center',
+              data: { turbo: false }
             ) do |f| %>
           <%= f.submit "Sign in with #{OmniAuth::Utils.camelize(provider)}", class: 'button-primary' %>
         <% end %>
