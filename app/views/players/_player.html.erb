@@ -1,20 +1,25 @@
 <% if player.playing %>
   <article id="<%= dom_id(player) %>" class="spotify-player" style="--spotify-track-image-url: url(<%= player.spotify_track.album_cover_url %>)">
-    <header>
+    <header class="w-full text-center bg-gradient-to-b from-cb-orange pb-2">
       <h3><%= player.user.name %></h3>
     </header>
-    <footer>
+    <section class="hidden">
+      <h3>
+        <%= link_to 'Play', player.spotify_track.song_url, target: '_blank' %>
+      </h3>
+    </section>
+    <footer class="w-full transform-gpu duration-300 translate-y-6 hover:translate-y-0 bg-gradient-to-t from-gray-700 pt-6">
       <h4><%= link_to player.spotify_track.song, player.spotify_track.song_url %></h4>
-      <h5><%= link_to player.spotify_track.artist, player.spotify_track.artist_url %></h5>
+      <h5><small>by</small> <%= link_to player.spotify_track.artist, player.spotify_track.artist_url %></h5>
     </footer>
   </article>
 <% else %>
   <article id="<%= dom_id(player) %>" class="spotify-player bg-gray-600" style="--spotify-track-image-url: url()">
-    <header>
+    <header class="w-full text-center bg-gradient-to-b from-cb-orange pb-2">
       <h3><%= player.user.name %></h3>
     </header>
-    <footer>
-      <h4>Nothing right now</h4>
+    <footer class="text-center">
+      <h4>Not playing anything right now</h4>
     </footer>
   </article>
 <% end %>

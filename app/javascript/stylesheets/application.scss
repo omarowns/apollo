@@ -33,14 +33,29 @@ input[type="text"] {
 }
 
 .spotify-player {
-  @apply w-60 h-60 mx-auto flex flex-col justify-between items-center rounded-md text-green-100;
-  @apply bg-spotify-track-image from-gray-900 bg-cover;
+  @apply w-60 h-60 mx-auto flex flex-col justify-between items-center rounded-md text-green-100 overflow-hidden;
+  @apply bg-spotify-track-image bg-cover;
+
+  &:hover {
+    section {
+      display: flex;
+    }
+  }
 
   h3 {
-    @apply text-2xl;
+    @apply text-3xl;
+    text-shadow: 0 0 5px black;
   }
 
   h4 {
+    @apply text-2xl;
+  }
+
+  h5 {
     @apply text-xl;
+
+    small {
+      @apply text-lg;
+    }
   }
 }
