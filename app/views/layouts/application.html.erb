@@ -14,6 +14,7 @@
     <div class="h-screen w-screen fixed top-0 bg-backdrop"></div>
     <%= render "shared/header" %>
     <div class="container mx-auto">
+      <%= render "shared/spotify_connect" if user_signed_in? %>
       <%= yield %>
     </div>
   </body>

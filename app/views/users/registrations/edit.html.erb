@@ -42,9 +42,12 @@
       <div class="flex items-center mb-3">
         <%= f.submit "Update", class: 'button-primary' %>
       </div>
-      <div class="flex items-center mb-3">
-        <%= link_to "Spotify Oauth Settings", spotify_oauth_settings_url, target: '_blank', class: 'button-external' %>
-      </div>
+      <% if resource.spotify_connected? %>
+        <div class="flex items-center mb-3">
+          <%= link_to "Spotify Oauth Settings", spotify_oauth_settings_url, target: '_blank', class: 'button-external' %>
+        </div>
+        <small>Follow this link to remove Spotify OAuth authorization for this App</small>
+      <% end %>
     <% end %>
   </section>
 

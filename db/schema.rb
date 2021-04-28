@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_152849) do
+ActiveRecord::Schema.define(version: 2021_04_28_152824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,16 +48,20 @@ ActiveRecord::Schema.define(version: 2021_04_26_152849) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "uid", null: false
     t.string "name"
     t.string "nickname"
     t.string "image"
     t.string "url"
-    t.string "token"
-    t.string "refresh_token"
+    t.string "spotify_token"
+    t.string "spotify_refresh_token"
+    t.string "spotify_uid"
+    t.string "google_uid"
+    t.string "google_token"
+    t.string "google_refresh_token"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["google_uid"], name: "index_users_on_google_uid"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid"], name: "index_users_on_uid", unique: true
+    t.index ["spotify_uid"], name: "index_users_on_spotify_uid", unique: true
   end
 
   add_foreign_key "players", "spotify_tracks"

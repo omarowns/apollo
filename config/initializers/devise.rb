@@ -315,6 +315,7 @@ Devise.setup do |config|
       user-read-email
       user-read-private
     ).join(' ')
+  config.omniauth :google_oauth2, Rails.application.credentials.dig(:google, :client_id), Rails.application.credentials.dig(:google, :client_secret), prompt: 'consent'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

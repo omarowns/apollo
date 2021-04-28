@@ -34,11 +34,11 @@ class SpotifyService
   def credentials
     {
       credentials: {
-        token: @user.token,
-        refresh_token: @user.refresh_token,
+        token: @user.spotify_token,
+        refresh_token: @user.spotify_refresh_token,
         access_refresh_callback: SpotifyRefreshTokenService.callback(@user)
       },
-      id: @user.uid
+      id: @user.spotify_uid
     }.deep_stringify_keys # rspotify expects string keys
   end
 end

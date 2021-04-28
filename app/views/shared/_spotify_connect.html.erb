@@ -1,0 +1,12 @@
+<% unless current_user.spotify_connected? %>
+  <section class="w-60 mx-auto mt-6">
+    <%= form_with(
+          url: omniauth_authorize_path(:user, :spotify, params: { show_dialog: 'true' }),
+          method: 'post',
+          class: 'p-4 bg-white rounded-md flex items-center justify-center',
+          data: { turbo: false }
+        ) do |f| %>
+      <%= f.submit "Connect with #{OmniAuth::Utils.camelize(:spotify)}", class: 'button-primary' %>
+    <% end %>
+  </section>
+<% end %>
