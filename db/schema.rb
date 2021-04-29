@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_152824) do
+ActiveRecord::Schema.define(version: 2021_04_29_231236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,11 +55,11 @@ ActiveRecord::Schema.define(version: 2021_04_28_152824) do
     t.string "spotify_token"
     t.string "spotify_refresh_token"
     t.string "spotify_uid"
-    t.string "google_uid"
     t.string "google_token"
     t.string "google_refresh_token"
+    t.string "google_uid"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["google_uid"], name: "index_users_on_google_uid"
+    t.index ["google_uid"], name: "index_users_on_google_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["spotify_uid"], name: "index_users_on_spotify_uid", unique: true
   end

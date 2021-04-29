@@ -9,8 +9,9 @@ class User < ApplicationRecord
   #        :recoverable, :rememberable, :validatable
   devise :database_authenticatable, :registerable, :omniauthable, omniauth_providers: %i(spotify google_oauth2)
 
-  validates_uniqueness_of :google_uid, :email
-  validates_uniqueness_of :spotify_uid, if: -> { spotify_uid.present? }
+  validates_uniqueness_of :email
+  validates :google_uid, uniqueness: true, allow_nil: true
+  validates :spotify_uid, uniqueness: true, allow_nil: true
 
   delegate :playing, to: :player, prefix: true, allow_nil: true
 
