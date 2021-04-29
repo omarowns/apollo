@@ -1,0 +1,10 @@
+<section class="w-60 mx-auto mt-6">
+  <%= form_with(
+        url: user_spotify_omniauth_authorize_path(params: { show_dialog: 'true' }),
+        method: 'post',
+        class: 'p-4 bg-white rounded-md flex items-center justify-center',
+        data: { turbo: false }
+      ) do |f| %>
+    <%= f.submit 'Sign in with Spotify', class: 'button-primary' %>
+  <% end %>
+</section>

@@ -26,17 +26,6 @@ module OmniauthHelper
   end
 
   def user_from_spotify(auth)
-    return User.new unless current_user
-
-    current_user.spotify_uid = auth.uid
-    current_user.spotify_token = auth.credentials.token
-    current_user.spotify_refresh_token = auth.credentials.refresh_token
-    current_user.nickname = auth.info.nickname
-    current_user.image = auth.info.image unless current_user.image.present?
-    current_user.url = auth.info.urls.symbolize_keys[:spotify]
-    current_user.save
-    current_user.create_player
-
-    current_user
+    UserFromSpotifyService.new(auth, current_user).call
   end
 end

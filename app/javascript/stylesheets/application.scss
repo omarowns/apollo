@@ -59,3 +59,11 @@ input[type="text"] {
     }
   }
 }
+
+.flash-notice {
+  @apply bg-green-500;
+}
+
+.flash-alert {
+  @apply bg-red-500;
+}

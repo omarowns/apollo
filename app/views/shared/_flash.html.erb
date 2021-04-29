@@ -1,0 +1,13 @@
+<% if flash.any? %>
+  <div class="w-screen h-10">
+    <% flash.each do |key, values| %>
+      <% if values.is_a?(Array) %>
+        <% values.each do |value| %>
+          <p class="text-center align-middle flash-<%= key %>"><%= value %></p>
+        <% end %>
+      <% else %>
+        <p class="text-center align-middle flash-<%= key %>"><%= values %></p>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

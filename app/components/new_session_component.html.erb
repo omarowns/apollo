@@ -1,0 +1,5 @@
+<% if open_registration? %>
+  <%= render Sessions::OpenRegistrationComponent.new %>
+<% else %>
+  <%= render Sessions::ClosedRegistrationComponent.new %>
+<% end %>

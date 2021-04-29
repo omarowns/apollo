@@ -7,15 +7,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # You should also create an action method in this controller like this:
   def spotify
-    user_from_omniauth do
-      set_flash_message(:notice, :success, kind: 'Spotify') if is_navigational_format?
-    end
+    user_from_omniauth('Spotify')
   end
 
   def google_oauth2
-    user_from_omniauth do
-      set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
-    end
+    user_from_omniauth('Google')
   end
 
   # More info at:
@@ -40,14 +36,37 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
 
-  def user_from_omniauth
+  def user_from_omniauth(kind)
+    if closed_registration? && spotify_user_exists?
+      reason = "another account is already connected with your Spotify account"
+      additional_message = "Contact your admin to have that account deleted."
+
+      flash[:alert] = []
+      flash[:alert] << find_message(:failure, kind: kind, reason: reason) if is_navigational_format?
+      flash[:alert] << find_message(:message, message: additional_message) if is_navigational_format?
+
+      redirect_to root_path and return
+    end
+
     @user = find_or_create_from_omniauth(request.env['omniauth.auth'])
 
     if @user.persisted?
       sign_in_and_redirect @user
-      yield
+      set_flash_message(:notice, :success, kind: kind) if is_navigational_format?
     else
       redirect_to new_user_session_path
     end
+  end
+
+  def spotify_user_exists?
+    User.find_for_database_authentication(spotify_uid: request.env['omniauth.auth'].uid).present?
+  end
+
+  def closed_registration?
+    !open_registration?
+  end
+
+  def open_registration?
+    ENV.fetch('OPEN_REGISTRATION') { false }
   end
 end
