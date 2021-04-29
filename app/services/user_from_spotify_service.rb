@@ -19,7 +19,7 @@ class UserFromSpotifyService
     if (user = User.find_for_database_authentication(spotify_uid: @auth.uid))
       user.spotify_token = @auth.credentials.token
       user.spotify_refresh_token = @auth.credentials.refresh_token
-      user.save
+      user.save!
 
       user
     else
@@ -32,7 +32,7 @@ class UserFromSpotifyService
       user.nickname = @auth.info.nickname
       user.image = @auth.info.image
       user.url = @auth.info.urls.symbolize_keys[:spotify]
-      user.save
+      user.save!
       user.create_player if user.persisted?
 
       user
@@ -48,7 +48,7 @@ class UserFromSpotifyService
     @current_user.nickname = @auth.info.nickname
     @current_user.image = @auth.info.image unless @current_user.image.present?
     @current_user.url = @auth.info.urls.symbolize_keys[:spotify]
-    @current_user.save
+    @current_user.save!
     @current_user.create_player if @current_user.persisted?
 
     @current_user

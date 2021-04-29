@@ -8,7 +8,7 @@ module OmniauthHelper
     if (user = User.find_for_database_authentication(google_uid: auth.uid))
       user.google_token = auth.credentials.token
       user.google_refresh_token = auth.credentials.refresh_token
-      user.save
+      user.save!
 
       user
     else
@@ -19,7 +19,7 @@ module OmniauthHelper
       user.name = auth.info.name
       user.email = auth.info.email
       user.image = auth.info.image
-      user.save
+      user.save!
 
       user
     end
