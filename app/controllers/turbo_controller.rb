@@ -7,6 +7,8 @@ class TurboController < ApplicationController
         raise error
       elsif  has_errors? && default_action
         render rendering_options.merge(formats: :html, status: :unprocessable_entity)
+      elsif delete?
+        redirect_to Rails.application.routes.url_helpers.root_path
       else
         redirect_to navigation_location
       end

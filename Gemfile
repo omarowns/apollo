@@ -28,7 +28,7 @@ gem 'redis', '~> 4.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
+gem 'devise', github: 'heartcombo/devise'
 gem 'omniauth-spotify'
 gem 'omniauth-rails_csrf_protection'
 gem 'tailwindcss-rails'

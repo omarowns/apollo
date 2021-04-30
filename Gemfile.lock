@@ -9,10 +9,9 @@ GIT
 
 GIT
   remote: https://github.com/heartcombo/devise.git
-  revision: e16d60d0fedc5f5e6f541b2b9e901a2d53f8ceda
-  branch: ca-omniauth-2
+  revision: 57d1a1d3816901e9f2cc26e36c3ef70547a91034
   specs:
-    devise (4.7.3)
+    devise (4.8.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
