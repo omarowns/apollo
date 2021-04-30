@@ -2,6 +2,9 @@
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include OmniauthHelper
+
+  after_action :update_player, only: %i(spotify google_oauth2)
+
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
 
@@ -68,5 +71,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def open_registration?
     ENV.fetch('OPEN_REGISTRATION') { false }
+  end
+
+  def update_player
+    if @user.present? && @user.persisted?
+      PlayerUpdateService.new(@user).call
+    end
   end
 end
