@@ -11,12 +11,12 @@ class Spotify::Track < ApplicationRecord
     new(
       uri: rspotify_track.uri,
       artist: rspotify_track.album.artists.first.name,
-      artist_url: rspotify_track.album.artists.first.external_urls['spotify'],
+      artist_url: rspotify_track.album.artists.first.external_urls.dig('spotify'),
       album: rspotify_track.album.name,
-      album_url: rspotify_track.album.external_urls['spotify'],
+      album_url: rspotify_track.album.external_urls.dig('spotify'),
       song: rspotify_track.name,
-      song_url: rspotify_track.external_urls['spotify'],
-      album_cover_url: rspotify_track.album.images.find { |img| img['height'] == 300 }['url'],
+      song_url: rspotify_track.external_urls.dig('spotify'),
+      album_cover_url: rspotify_track.album.images.find { |img| img.dig('height') == 300 }.dig('url'),
       preview_url: rspotify_track.preview_url
     )
   end
